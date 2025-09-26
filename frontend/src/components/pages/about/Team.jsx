@@ -1,5 +1,5 @@
 
-import testimonialsData from '../../../../public/data/team.js';
+import testimonialsData from '../../../data/team.js';
 
 
 export default function Team() {
