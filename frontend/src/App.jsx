@@ -5,6 +5,8 @@ import Navigation from "./components/Navigation";
 import Info from "./components/pages/Info";
 import ContactUs from "./components/pages/ContactUs";
 import Home from "./components/pages/Home";
+// Products listing removed — product details are accessible only via QR
+import ProductDetail from "./components/pages/ProductDetail";
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/info" element={<Info />} />
+            <Route path="/products/:productId" element={<ProductDetail />} />
             <Route path="/contact" element={<ContactUs />} />
           </Routes>
         </main>

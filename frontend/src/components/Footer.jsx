@@ -14,7 +14,7 @@ function Footer() {
         {/* Brand and Social */}
         <div className="flex-1 flex flex-col gap-4">
           <h3 className="text-3xl font-extrabold text-[#41A4FF] tracking-wide">
-            ECOWEAVE
+            ECOJOURNEY
           </h3>
           <p className="text-white font-light text-sm max-w-xs">
             Join with us to Empowering the Sustainable World!
@@ -82,7 +82,7 @@ function Footer() {
       </div>
       {/* Copyright */}
       <div className="border-t border-slate-700 mt-8 pt-4 text-center text-xs text-gray-400">
-        &copy; {new Date().getFullYear()} EcoWeave. All rights reserved.
+        &copy; {new Date().getFullYear()} EcoJourney. All rights reserved.
       </div>
     </footer>
   );

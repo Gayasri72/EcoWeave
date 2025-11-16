@@ -49,7 +49,7 @@ function Hero() {
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-800 leading-tight">
                 Welcome to{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 animate-pulse">
-                  EcoWeave
+                  EcoJourney
                 </span>
               </h1>
 
@@ -62,10 +62,7 @@ function Hero() {
               </div>
 
               <p className="text-lg text-gray-600 leading-relaxed max-w-lg animate-slideUp">
-                Discover sustainable fashion that cares for both you and the
-                planet. Our eco-friendly clothing combines innovative design,
-                comfort, and environmental responsibility to create a better
-                future through fashion.
+                With this digital twin, you can simple identify the environmental impact of a cotton t shirt and helps to make more sustainable choices with confidence.
               </p>
             </div>
 
