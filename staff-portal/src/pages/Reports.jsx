@@ -108,10 +108,7 @@ export default function Reports() {
 
           <tbody>
             {products.map((p) => (
-              <tr
-                key={p._id}
-                className="border-b hover:bg-gray-50 transition"
-              >
+              <tr key={p._id} className="border-b hover:bg-gray-50 transition">
                 <td className="px-4 py-3 text-sm">{p.productId}</td>
                 <td className="px-4 py-3 text-sm">{p.category}</td>
                 <td className="px-4 py-3 text-sm font-semibold text-indigo-700">
@@ -169,7 +166,9 @@ export default function Reports() {
             <div className="p-5 space-y-6">
               {/* ANALYSIS */}
               <div>
-                <h4 className="text-lg font-bold text-gray-800">Sustainability Analysis</h4>
+                <h4 className="text-lg font-bold text-gray-800">
+                  Sustainability Analysis
+                </h4>
 
                 {comparisons[selectedProductId]?.data ? (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3">
@@ -182,13 +181,16 @@ export default function Reports() {
                       >
                         <h5 className="font-semibold capitalize">{stage}</h5>
                         <p className="text-sm mt-2">
-                          <strong>Water:</strong> {info.actual.water} / {info.standard.water}
+                          <strong>Water:</strong> {info.actual.water} /{" "}
+                          {info.standard.water}
                         </p>
                         <p className="text-sm">
-                          <strong>CO₂:</strong> {info.actual.co2} / {info.standard.co2}
+                          <strong>CO₂:</strong> {info.actual.co2} /{" "}
+                          {info.standard.co2}
                         </p>
                         <p className="text-sm">
-                          <strong>Energy:</strong> {info.actual.energy} / {info.standard.energy}
+                          <strong>Energy:</strong> {info.actual.energy} /{" "}
+                          {info.standard.energy}
                         </p>
                       </div>
                     ))}
