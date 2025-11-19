@@ -59,7 +59,7 @@ export default function LoginPage() {
               <h1 className="text-4xl font-bold mb-3 leading-tight">
                 Welcome to
                 <br />
-                EcoWeave Staff Portal
+                EcoJourney Staff Portal
               </h1>
               <p className="text-lg opacity-95 mb-8">
                 Empowering sustainability through transparent tracking and
