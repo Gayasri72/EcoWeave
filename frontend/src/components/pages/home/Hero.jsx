@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
 
 const motivationalTexts = [
-  "Fashion that Cares for Tomorrow",
-  "Weaving Sustainability into Style",
-  "Threads of Change, Patterns of Hope",
-  "Where Style Meets Sustainability",
-  "Eco-Conscious Fashion for a Better World",
+  "Here is the little eco-footprint story of the Tshirt you're about to take home",
 ];
 
 function Hero() {
@@ -108,7 +104,8 @@ function Hero() {
               {/* Large Hero Image */}
               <div className="aspect-[5/4] relative bg-gradient-to-br from-green-100 to-emerald-100">
                 <img
-                  src="https://smallbizclub.com/wp-content/uploads/2024/07/AdobeStock_858672299-scaled.jpeg"
+                  // src="https://smallbizclub.com/wp-content/uploads/2024/07/AdobeStock_858672299-scaled.jpeg"
+                  src="src/assets/ecowave.jpeg"
                   alt="Sustainable organic cotton textiles and eco-friendly fabrics"
                   className="w-full h-full object-cover object-center group-hover:scale-[1.05] transition-transform duration-700 rounded-3xl"
                   style={{
