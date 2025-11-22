@@ -8,6 +8,7 @@ const metricSchema = new Schema(
     water: { type: Number, default: 0 },
     co2: { type: Number, default: 0 },
     energy: { type: Number, default: 0 },
+    numberOfProducts: { type: Number, default: 1 }, // Number of products manufactured
     submittedBy: { type: Schema.Types.ObjectId, ref: "User", default: null },
     submittedAt: { type: Date, default: null },
   },

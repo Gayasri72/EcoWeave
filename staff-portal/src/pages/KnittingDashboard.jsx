@@ -14,6 +14,7 @@ export default function KnittingDashboard() {
   const [water, setWater] = useState("");
   const [co2, setCo2] = useState("");
   const [energy, setEnergy] = useState("");
+  const [numberOfProducts, setNumberOfProducts] = useState("");
   const [category, setCategory] = useState("");
   const [msg, setMsg] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,6 +28,7 @@ export default function KnittingDashboard() {
         water: Number(water),
         co2: Number(co2),
         energy: Number(energy),
+        numberOfProducts: Number(numberOfProducts),
         category,
       });
       setMsg({
@@ -38,6 +40,7 @@ export default function KnittingDashboard() {
       setWater("");
       setCo2("");
       setEnergy("");
+      setNumberOfProducts("");
       setCategory("");
     } catch (err) {
       setMsg({
@@ -149,7 +152,7 @@ export default function KnittingDashboard() {
                     {/* Water Input */}
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
-                        💧 Water Usage
+                        💧 Water Usage (per month)
                       </label>
                       <div className="relative">
                         <input
@@ -165,14 +168,14 @@ export default function KnittingDashboard() {
                         </span>
                       </div>
                       <p className="text-xs text-gray-500 mt-1">
-                        Liters consumed
+                        Total monthly consumption
                       </p>
                     </div>
 
                     {/* CO2 Input */}
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
-                        🌍 Carbon Emissions
+                        🌍 Carbon Emissions (per product)
                       </label>
                       <div className="relative">
                         <input
@@ -188,7 +191,7 @@ export default function KnittingDashboard() {
                         </span>
                       </div>
                       <p className="text-xs text-gray-500 mt-1">
-                        CO₂ emissions
+                        Per product emissions
                       </p>
                     </div>
 
@@ -196,7 +199,7 @@ export default function KnittingDashboard() {
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
                         <BoltIcon className="w-4 h-4 text-yellow-500" />
-                        Energy Consumption
+                        Energy Consumption (per month)
                       </label>
                       <div className="relative">
                         <input
@@ -212,7 +215,34 @@ export default function KnittingDashboard() {
                         </span>
                       </div>
                       <p className="text-xs text-gray-500 mt-1">
-                        Kilowatt-hours
+                        Total monthly consumption
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-5 mt-5">
+                    {/* Number of Products Input */}
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                        📦 Number of Products Manufactured
+                      </label>
+                      <div className="relative">
+                        <input
+                          type="number"
+                          step="1"
+                          min="1"
+                          required
+                          className="w-full px-4 py-3 pr-16 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-green-500 focus:border-transparent transition placeholder-gray-400"
+                          placeholder="1"
+                          value={numberOfProducts}
+                          onChange={(e) => setNumberOfProducts(e.target.value)}
+                        />
+                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm font-medium">
+                          units
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Total products made this month
                       </p>
                     </div>
                   </div>

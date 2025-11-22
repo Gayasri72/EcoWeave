@@ -94,7 +94,7 @@ export const updateStage = async (req, res) => {
     if (!allowed.includes(stage))
       return res.status(400).json({ message: "Invalid stage" });
 
-    const { water, co2, energy } = req.body;
+    const { water, co2, energy, numberOfProducts } = req.body;
     const { category } = req.body;
 
     let product = await Product.findOne({ productId });
@@ -115,6 +115,13 @@ export const updateStage = async (req, res) => {
         });
       }
 
+      // Calculate per-product values
+      // CO2 is already input per product
+      // Water and energy are input per month, so divide by numberOfProducts
+      const numProducts = Number(numberOfProducts) || 1;
+      const waterPerProduct = (Number(water) || 0) / numProducts;
+      const energyPerProduct = (Number(energy) || 0) / numProducts;
+
       // create new product with initial knitting metrics
       const initial = {
         productId,
@@ -124,9 +131,10 @@ export const updateStage = async (req, res) => {
       };
 
       initial.knitting = {
-        water: Number(water) || 0,
-        co2: Number(co2) || 0,
-        energy: Number(energy) || 0,
+        water: waterPerProduct,
+        co2: Number(co2) || 0, // CO2 is already per product
+        energy: energyPerProduct,
+        numberOfProducts: numProducts,
         submittedBy: req.user ? req.user.id : null,
         submittedAt: new Date(),
       };
@@ -140,11 +148,19 @@ export const updateStage = async (req, res) => {
         });
       }
 
+      // Calculate per-product values
+      // CO2 is already input per product
+      // Water and energy are input per month, so divide by numberOfProducts
+      const numProducts = Number(numberOfProducts) || 1;
+      const waterPerProduct = water !== undefined ? (Number(water) || 0) / numProducts : undefined;
+      const energyPerProduct = energy !== undefined ? (Number(energy) || 0) / numProducts : undefined;
+
       // Update nested stage
       product[stage] = product[stage] || {};
-      if (water !== undefined) product[stage].water = Number(water);
-      if (co2 !== undefined) product[stage].co2 = Number(co2);
-      if (energy !== undefined) product[stage].energy = Number(energy);
+      if (waterPerProduct !== undefined) product[stage].water = waterPerProduct;
+      if (co2 !== undefined) product[stage].co2 = Number(co2); // CO2 is already per product
+      if (energyPerProduct !== undefined) product[stage].energy = energyPerProduct;
+      if (numberOfProducts !== undefined) product[stage].numberOfProducts = numProducts;
       product[stage].submittedBy = req.user ? req.user.id : null;
       product[stage].submittedAt = new Date();
     }
