@@ -10,6 +10,8 @@ import {
   XCircleIcon,
   ArrowDownTrayIcon,
   ArrowTopRightOnSquareIcon,
+  TrashIcon,
+  DocumentArrowDownIcon,
 } from "@heroicons/react/24/outline";
 
 export default function Reports() {
@@ -70,6 +72,42 @@ export default function Reports() {
     }
   };
 
+  const deleteProduct = async (productId) => {
+    if (!window.confirm("Are you sure you want to delete this product?")) return;
+
+    try {
+      await axios.delete(`/api/products/${productId}`);
+      setProducts((prev) => prev.filter((p) => p.productId !== productId));
+      setAdminProducts((prev) => prev.filter((p) => p.productId !== productId));
+      if (selectedProductId === productId) {
+        setIsModalOpen(false);
+        setSelectedProductId(null);
+      }
+    } catch (err) {
+      alert("Failed to delete product: " + err.message);
+    }
+  };
+
+  const downloadReport = async () => {
+    try {
+      const response = await axios.get("/api/products/report/monthly", {
+        responseType: "blob",
+      });
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute(
+        "download",
+        `monthly-report-${new Date().toISOString().slice(0, 10)}.csv`
+      );
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (err) {
+      alert("Failed to download report: " + err.message);
+    }
+  };
+
   const sustainableCount = products.filter((p) => p.isSustainable).length;
   const avgScore =
     products.length > 0
@@ -96,13 +134,22 @@ export default function Reports() {
                 </p>
               </div>
             </div>
-            <button
-              onClick={handleLogout}
-              className="flex items-center gap-2 px-5 py-2.5 bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-xl hover:bg-opacity-30 transition-all duration-200 border border-white border-opacity-30"
-            >
-              <ArrowLeftOnRectangleIcon className="w-5 h-5" />
-              <span className="font-semibold">Logout</span>
-            </button>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={downloadReport}
+                className="flex items-center gap-2 px-5 py-2.5 bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-xl hover:bg-opacity-30 transition-all duration-200 border border-white border-opacity-30"
+              >
+                <DocumentArrowDownIcon className="w-5 h-5" />
+                <span className="font-semibold">Monthly Report</span>
+              </button>
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-2 px-5 py-2.5 bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-xl hover:bg-opacity-30 transition-all duration-200 border border-white border-opacity-30"
+              >
+                <ArrowLeftOnRectangleIcon className="w-5 h-5" />
+                <span className="font-semibold">Logout</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -294,6 +341,13 @@ export default function Reports() {
                           <EyeIcon className="w-4 h-4" />
                           View Details
                         </button>
+                        <button
+                          onClick={() => deleteProduct(p.productId)}
+                          className="inline-flex items-center gap-2 bg-red-100 hover:bg-red-200 text-red-700 px-4 py-2 rounded-lg text-sm font-semibold shadow-sm hover:shadow-md transition-all duration-200 ml-2"
+                        >
+                          <TrashIcon className="w-4 h-4" />
+                          Delete
+                        </button>
                       </td>
                     </tr>
                   ))
@@ -321,12 +375,21 @@ export default function Reports() {
                   ID: {selectedProductId}
                 </p>
               </div>
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="w-10 h-10 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg flex items-center justify-center transition-all duration-200"
-              >
-                <XMarkIcon className="w-6 h-6 text-white" />
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => deleteProduct(selectedProductId)}
+                  className="flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors duration-200 text-sm font-semibold"
+                >
+                  <TrashIcon className="w-4 h-4" />
+                  Delete Product
+                </button>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="w-10 h-10 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg flex items-center justify-center transition-all duration-200"
+                >
+                  <XMarkIcon className="w-6 h-6 text-white" />
+                </button>
+              </div>
             </div>
 
             {/* MODAL CONTENT */}

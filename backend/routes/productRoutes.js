@@ -30,6 +30,22 @@ router.get("/:productId", productController.getProductById);
 // Compare product metrics to standard values (public)
 router.get("/:productId/compare", productController.compareToStandard);
 
+// Delete product (Admin only)
+router.delete(
+  "/:productId",
+  protect,
+  authorizeRoles("admin"),
+  productController.deleteProduct
+);
+
+// Get monthly report (Admin only)
+router.get(
+  "/report/monthly",
+  protect,
+  authorizeRoles("admin"),
+  productController.getMonthlyReport
+);
+
 // Update stage (knitting/finishing/sewing) - protected with role checks
 router.put("/:productId/stage/:stage", protect, (req, res, next) => {
   const { stage } = req.params;

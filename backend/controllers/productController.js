@@ -404,10 +404,76 @@ export const compareToStandard = async (req, res) => {
   }
 };
 
+
+// Delete a product
+export const deleteProduct = async (req, res) => {
+  try {
+    const { productId } = req.params;
+    if (!productId)
+      return res.status(400).json({ message: "productId is required" });
+
+    const product = await Product.findOneAndDelete({ productId });
+    if (!product) return res.status(404).json({ message: "Product not found" });
+
+    // Also remove from AdminProduct (public view)
+    await AdminProduct.findOneAndDelete({ productId });
+
+    return res.json({ message: "Product deleted successfully" });
+  } catch (err) {
+    console.error("deleteProduct error", err);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Generate monthly report (CSV)
+export const getMonthlyReport = async (req, res) => {
+  try {
+    const products = await Product.find().lean();
+
+    // CSV Header
+    let csv =
+      "Product ID,Name,Category,Sustainability Score,Is Sustainable,Knitting Water,Knitting CO2,Knitting Energy,Finishing Water,Finishing CO2,Finishing Energy,Sewing Water,Sewing CO2,Sewing Energy\n";
+
+    // CSV Rows
+    products.forEach((p) => {
+      const k = p.knitting || {};
+      const f = p.finishing || {};
+      const s = p.sewing || {};
+
+      const row = [
+        p.productId,
+        p.name || "",
+        p.category || "",
+        p.sustainabilityScore || 0,
+        p.isSustainable ? "Yes" : "No",
+        k.water || 0,
+        k.co2 || 0,
+        k.energy || 0,
+        f.water || 0,
+        f.co2 || 0,
+        f.energy || 0,
+        s.water || 0,
+        s.co2 || 0,
+        s.energy || 0,
+      ].join(",");
+      csv += row + "\n";
+    });
+
+    res.header("Content-Type", "text/csv");
+    res.attachment(`monthly-report-${new Date().toISOString().slice(0, 10)}.csv`);
+    return res.send(csv);
+  } catch (err) {
+    console.error("getMonthlyReport error", err);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
+
 export default {
   createProduct,
   getProductById,
   updateStage,
   calculateSustainability,
   compareToStandard,
+  deleteProduct,
+  getMonthlyReport,
 };
