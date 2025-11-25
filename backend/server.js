@@ -15,6 +15,7 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use("/uploads", express.static("uploads"));
 
 // Expose auth helpers on the app (optional) so other modules can access them if needed
 app.locals.auth = { protect, authorizeRoles };

@@ -2,6 +2,40 @@ import express from "express";
 import Product from "../models/Product.js";
 import * as productController from "../controllers/productController.js";
 import { protect, authorizeRoles } from "../middleware/authMiddleware.js";
+import multer from "multer";
+import path from "path";
+
+// Configure multer for image upload
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename(req, file, cb) {
+    cb(
+      null,
+      `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
+    );
+  },
+});
+
+function checkFileType(file, cb) {
+  const filetypes = /jpg|jpeg|png/;
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+  const mimetype = filetypes.test(file.mimetype);
+
+  if (extname && mimetype) {
+    return cb(null, true);
+  } else {
+    cb("Images only!");
+  }
+}
+
+const upload = multer({
+  storage,
+  fileFilter: function (req, file, cb) {
+    checkFileType(file, cb);
+  },
+});
 
 const router = express.Router();
 
@@ -44,6 +78,15 @@ router.get(
   protect,
   authorizeRoles("admin"),
   productController.getMonthlyReport
+);
+
+// Upload product image (Admin only)
+router.post(
+  "/:productId/image",
+  protect,
+  authorizeRoles("admin"),
+  upload.single("image"),
+  productController.uploadImage
 );
 
 // Update stage (knitting/finishing/sewing) - protected with role checks

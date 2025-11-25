@@ -463,7 +463,44 @@ export const getMonthlyReport = async (req, res) => {
     res.attachment(`monthly-report-${new Date().toISOString().slice(0, 10)}.csv`);
     return res.send(csv);
   } catch (err) {
-    console.error("getMonthlyReport error", err);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Upload product image
+export const uploadImage = async (req, res) => {
+  try {
+    const { productId } = req.params;
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    const imageUrl = `/${req.file.path.replace(/\\/g, "/")}`;
+
+    const product = await Product.findOneAndUpdate(
+      { productId },
+      { imageUrl },
+      { new: true }
+    );
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    // Also update AdminProduct
+    await AdminProduct.findOneAndUpdate(
+      { productId },
+      { imageUrl },
+      { upsert: true }
+    );
+
+    return res.json({
+      message: "Image uploaded successfully",
+      imageUrl,
+      product,
+    });
+  } catch (err) {
+    console.error("uploadImage error", err);
     return res.status(500).json({ message: "Server error" });
   }
 };
@@ -476,4 +513,5 @@ export default {
   compareToStandard,
   deleteProduct,
   getMonthlyReport,
+  uploadImage,
 };

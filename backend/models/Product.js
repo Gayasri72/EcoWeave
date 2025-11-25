@@ -20,6 +20,7 @@ const productSchema = new Schema(
     productId: { type: String, required: true, unique: true, trim: true },
     name: { type: String, trim: true },
     description: { type: String },
+    imageUrl: { type: String },
     // images are no longer required for products; category is primary
     qrCodeUrl: { type: String },
     category: {

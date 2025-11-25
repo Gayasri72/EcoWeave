@@ -21,6 +21,8 @@ export default function Reports() {
   const [comparisons, setComparisons] = useState({});
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -105,6 +107,36 @@ export default function Reports() {
       link.remove();
     } catch (err) {
       alert("Failed to download report: " + err.message);
+    }
+  }
+
+
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
+
+  const handleUpload = async () => {
+    if (!selectedFile || !selectedProductId) return;
+
+    const formData = new FormData();
+    formData.append("image", selectedFile);
+
+    setUploading(true);
+    try {
+      await axios.post(`/api/products/${selectedProductId}/image`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      alert("Image uploaded successfully!");
+      setSelectedFile(null);
+      // Refresh products to show new image if needed
+      const res = await axios.get("/api/products");
+      setProducts(res.data || []);
+    } catch (err) {
+      alert("Failed to upload image: " + (err.response?.data?.message || err.message));
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -392,8 +424,38 @@ export default function Reports() {
               </div>
             </div>
 
+
+
             {/* MODAL CONTENT */}
             <div className="overflow-y-auto flex-1 p-6 space-y-6">
+              {/* IMAGE UPLOAD SECTION */}
+              <div className="bg-blue-50 border border-blue-200 rounded-xl p-5">
+                <h4 className="text-lg font-bold text-blue-900 mb-3 flex items-center gap-2">
+                  📸 Product Image
+                </h4>
+                <div className="flex items-center gap-4">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    className="block w-full text-sm text-gray-500
+                      file:mr-4 file:py-2 file:px-4
+                      file:rounded-full file:border-0
+                      file:text-sm file:font-semibold
+                      file:bg-blue-100 file:text-blue-700
+                      hover:file:bg-blue-200
+                    "
+                  />
+                  <button
+                    onClick={handleUpload}
+                    disabled={!selectedFile || uploading}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  >
+                    {uploading ? "Uploading..." : "Upload"}
+                  </button>
+                </div>
+              </div>
+
               {/* SUSTAINABILITY ANALYSIS */}
               <div>
                 <h4 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
