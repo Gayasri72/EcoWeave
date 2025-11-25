@@ -401,7 +401,7 @@ export default function SewingDashboard() {
                 <div className="bg-white rounded-lg p-3">
                   <p className="font-semibold text-gray-700">Cotton Sewing</p>
                   <p className="text-gray-600 text-xs mt-1">
-                    Water: ≤100L • CO₂: ≤0.5kg • Energy: ≤2kWh
+                    Water: 0L • CO₂: ≤0.085kg • Energy: ≤0.13kWh
                   </p>
                 </div>
                 <div className="bg-white rounded-lg p-3">

@@ -370,7 +370,7 @@ export default function KnittingDashboard() {
                 <div className="bg-white rounded-lg p-3">
                   <p className="font-semibold text-gray-700">Cotton Knitting</p>
                   <p className="text-gray-600 text-xs mt-1">
-                    Water: ≤600L • CO₂: ≤2.5kg • Energy: ≤6kWh
+                    Water: ≤1L • CO₂: ≤3.9kg • Energy: ≤6kWh
                   </p>
                 </div>
                 <div className="bg-white rounded-lg p-3">

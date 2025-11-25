@@ -406,7 +406,7 @@ export default function FinishingDashboard() {
                     Cotton Finishing
                   </p>
                   <p className="text-gray-600 text-xs mt-1">
-                    Water: ≤250L • CO₂: ≤1.2kg • Energy: ≤4kWh
+                    Water: ≤70L • CO₂: ≤4.8kg • Energy: ≤14.5kWh
                   </p>
                 </div>
                 <div className="bg-white rounded-lg p-3">
