@@ -8,6 +8,8 @@ import Home from "./components/pages/Home";
 // Products listing removed — product details are accessible only via QR
 import ProductDetail from "./components/pages/ProductDetail";
 import { Dpp } from "./components/pages/standards/Dpp";
+import { Pfmm } from "./components/pages/standards/Pfmm";
+import { HiggIndex } from "./components/pages/standards/HiggIndex";
 
 function App() {
   return (
@@ -21,7 +23,7 @@ function App() {
             <Route path="/info" element={<Info />} />
             <Route path="/products/:productId" element={<ProductDetail />} />
             <Route path="/contact" element={<ContactUs />} />
-            <Route path="/standards/higg-index" element={<HiggIndex />} />
+            <Route path="/standards/higg-index" element={<HiggIndex/>} />
             <Route path="/standards/dpp" element={<Dpp />} />
             <Route path="/standards/pfmm" element={<Pfmm />} />
           </Routes>
