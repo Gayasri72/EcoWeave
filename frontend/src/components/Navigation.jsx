@@ -28,17 +28,17 @@ function Navigation() {
     {
       name: "HIGG INDEX",
       href: "/standards/higg-index",
-      description: "Environmental Management",
+      description: "Sustainability Assessment Tool",
     },
     {
       name: "DPP",
       href: "/standards/dpp",
-      description: "Global Organic Textile Standard",
+      description: "Digital Product Passport",
     },
     {
       name: "PFMM",
       href: "/standards/pfmm",
-      description: "Textile Safety Standards",
+      description: "Preferred Fiber & Materials Matrix ",
     },
   ];
 
