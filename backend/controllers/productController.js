@@ -181,9 +181,9 @@ export const updateStage = async (req, res) => {
       const report = (function computeReport(prod) {
         const STANDARDS_MAP = {
           cotton: {
-            knitting: { water: 600, co2: 2.5, energy: 6 },
-            finishing: { water: 250, co2: 1.2, energy: 4 },
-            sewing: { water: 100, co2: 0.5, energy: 2 },
+            knitting: { water: 1, co2: 3.9, energy: 6 },
+            finishing: { water: 70, co2: 4.8, energy: 14.5 },
+            sewing: { water: 0, co2: 0.085, energy: 0.13 },
           },
           silk: {
             knitting: { water: 1000, co2: 3.2, energy: 8 },
@@ -317,9 +317,9 @@ export const compareToStandard = async (req, res) => {
     // 🌿 REAL-WORLD STANDARD VALUES
     const STANDARDS_MAP = {
       cotton: {
-        knitting: { water: 600, co2: 2.5, energy: 6 },
-        finishing: { water: 250, co2: 1.2, energy: 4 },
-        sewing: { water: 100, co2: 0.5, energy: 2 },
+        knitting: { water: 1, co2: 3.9, energy: 6 },
+        finishing: { water: 70, co2: 4.8, energy: 14.5 },
+        sewing: { water: 0, co2: 0.085, energy: 0.13 },
       },
       silk: {
         knitting: { water: 1000, co2: 3.2, energy: 8 },
