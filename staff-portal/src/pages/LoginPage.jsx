@@ -40,7 +40,7 @@ export default function LoginPage() {
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col md:flex-row bg-white shadow-2xl rounded-2xl overflow-hidden">
           {/* Left welcome panel */}
-          <div className="md:w-1/2 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 text-white p-12 flex flex-col justify-center relative overflow-hidden">
+          <div className="md:w-1/2 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 text-white p-6 md:p-12 flex flex-col justify-center relative overflow-hidden">
             {/* Decorative circles */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-y-32 translate-x-32"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-white opacity-5 rounded-full translate-y-48 -translate-x-48"></div>
@@ -79,7 +79,7 @@ export default function LoginPage() {
           </div>
 
           {/* Right login panel */}
-          <div className="md:w-1/2 p-10 flex items-center justify-center">
+          <div className="md:w-1/2 p-6 md:p-10 flex items-center justify-center">
             <div className="w-full max-w-md">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl mb-4 shadow-lg">

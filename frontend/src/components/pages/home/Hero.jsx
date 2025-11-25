@@ -37,12 +37,12 @@ function Hero() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 flex items-center">
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-10 lg:py-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Animated Motivational Text */}
           <div className="space-y-8 animate-fadeInLeft">
             <div className="space-y-6">
-              <h1 className="text-5xl lg:text-6xl font-bold text-gray-800 leading-tight">
+              <h1 className="text-4xl lg:text-6xl font-bold text-gray-800 leading-tight">
                 Welcome to{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 animate-pulse">
                   EcoJourney

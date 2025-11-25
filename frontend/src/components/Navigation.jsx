@@ -161,7 +161,7 @@ function Navigation() {
                   <Link
                     key={item.name}
                     to={item.href}
-                    className="block px-6 py-2 text-sm text-gray-700 hover:text-green-600 hover:bg-green-50 transition-colors"
+                    className="block px-6 py-3 text-base text-gray-700 hover:text-green-600 hover:bg-green-50 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <div className="font-medium">{item.name}</div>
@@ -176,7 +176,7 @@ function Navigation() {
               {/* Products link removed from mobile menu */}
               <Link
                 to="/about"
-                className="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-green-600 transition-colors"
+                className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-green-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About

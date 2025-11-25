@@ -86,11 +86,11 @@ export default function SewingDashboard() {
         {/* Header Section */}
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-3">
-            <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg">
+            <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg">
               <ScissorsIcon className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h1 className="text-4xl font-bold text-gray-800">
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
                 Sewing Dashboard
               </h1>
               <p className="text-gray-600 mt-1">

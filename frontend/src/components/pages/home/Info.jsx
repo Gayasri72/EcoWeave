@@ -48,7 +48,7 @@ function Info() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-green-50">
       {/* Hero Section */}
-      <section className="py-20 px-4">
+      <section className="py-12 lg:py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <div
             className={`transition-all duration-1000 ${
@@ -57,7 +57,7 @@ function Info() {
                 : "opacity-0 translate-y-10"
             }`}
           >
-            <h1 className="text-5xl lg:text-7xl font-bold text-gray-800 mb-6">
+            <h1 className="text-3xl lg:text-7xl font-bold text-gray-800 mb-6">
               What Are{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 animate-pulse">
                 Sustainable Textiles?
@@ -126,7 +126,7 @@ function Info() {
       <section className="py-20 bg-gradient-to-r from-green-600 to-emerald-600 text-white">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+            <h2 className="text-3xl lg:text-5xl font-bold mb-6">
               Our Environmental Impact
             </h2>
             <p className="text-xl opacity-90 max-w-2xl mx-auto">
@@ -161,7 +161,7 @@ function Info() {
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
+            <h2 className="text-3xl lg:text-5xl font-bold text-gray-800 mb-6">
               From Nature to Fashion
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -233,7 +233,7 @@ function Info() {
       <section className="py-20 bg-gradient-to-r from-emerald-50 to-green-100">
         <div className="max-w-4xl mx-auto text-center px-4">
           <div className="animate-slideUp">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
+            <h2 className="text-3xl lg:text-5xl font-bold text-gray-800 mb-6">
               Ready to Make a Difference?
             </h2>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
