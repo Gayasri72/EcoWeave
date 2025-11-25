@@ -197,7 +197,9 @@ export default function ProductDetail() {
               <div className="md:w-48 flex-shrink-0">
                 {product.imageUrl ? (
                   <img
-                    src={product.imageUrl}
+                    src={`${
+                      import.meta.env.VITE_API_BASE || "http://localhost:5000"
+                    }${product.imageUrl}`}
                     alt={product.name}
                     className="w-full h-48 object-cover rounded-xl shadow-lg border-2 border-green-100"
                   />
