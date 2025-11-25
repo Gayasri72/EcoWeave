@@ -26,18 +26,18 @@ function Navigation() {
 
   const standardsItems = [
     {
-      name: "ISO 14001",
-      href: "/standards/iso14001",
+      name: "HIGG INDEX",
+      href: "/standards/higg-index",
       description: "Environmental Management",
     },
     {
-      name: "GOTS",
-      href: "/standards/gots",
+      name: "DPP",
+      href: "/standards/dpp",
       description: "Global Organic Textile Standard",
     },
     {
-      name: "OEKO-TEX",
-      href: "/standards/oekotex",
+      name: "PFMM",
+      href: "/standards/pfmm",
       description: "Textile Safety Standards",
     },
   ];
@@ -67,7 +67,7 @@ function Navigation() {
                   onClick={() => setIsStandardsOpen(!isStandardsOpen)}
                   className="text-gray-700 hover:text-green-600 px-3 py-2 text-sm font-medium transition-colors duration-200 flex items-center"
                 >
-                  Standards
+                  Inspired By
                   <svg
                     className={`ml-1 h-4 w-4 transition-transform ${
                       isStandardsOpen ? "rotate-180" : ""
@@ -155,7 +155,7 @@ function Navigation() {
               {/* Standards Section */}
               <div className="mb-4">
                 <h3 className="px-3 py-2 text-sm font-semibold text-gray-900">
-                  Standards
+                  Inspired By
                 </h3>
                 {standardsItems.map((item) => (
                   <Link
